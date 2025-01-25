@@ -23,17 +23,22 @@ router.post('/patient/register', validateRegistration, async (req, res) => {
   }
 });
 
-// Login Route
 router.post('/login', validateLogin, async (req, res) => {
   try {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
+    // Extract the domain from the request origin
+    const origin = req.get('origin');
+    const domain = origin ? new URL(origin).hostname : undefined;
+    
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: "none",
-      maxAge: 7* 24 * 60 * 60 * 1000
+      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+      sameSite: 'none', // Required for cross-site cookies
+      domain: domain, // Dynamically set the domain
+      path: '/', // Ensure the cookie is accessible across all routes
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     res.json({ message: 'Login successful' });
