@@ -34,6 +34,7 @@ const limiter = rateLimit({
     },
     exposedHeaders: ['Set-Cookie'],
     credentials: true,
+    
   };
   
 
