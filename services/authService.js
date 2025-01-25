@@ -1,6 +1,4 @@
-const bcrypt = require('bcryptjs');
-const client = require('../config/supabase'); // Import the pg client
-const { generateToken } = require('../config/jwtConfig');
+const pool = require('../config/supabase'); // Import the pool
 
 const registerUser = async (userData, userType) => {
   const { password, ...userDetails } = userData;
@@ -24,7 +22,7 @@ const registerUser = async (userData, userType) => {
   `;
 
   try {
-    const result = await client.query(query, [...values, hashedPassword]);
+    const result = await pool.query(query, [...values, hashedPassword]);
 
     if (result.rows.length === 0) {
       throw new Error('Registration failed: No data returned');
@@ -49,7 +47,7 @@ const loginUser = async (email, password, userType) => {
       WHERE email = $1;
     `;
 
-    const result = await client.query(query, [email]);
+    const result = await pool.query(query, [email]);
 
     if (result.rows.length === 0) {
       throw new Error('User not found');
