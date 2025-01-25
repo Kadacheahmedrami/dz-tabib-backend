@@ -14,6 +14,13 @@ app.use(cookieParser());
 // Routes
 app.use('/api/auth', authRoutes);
 
+const corsOptions = {
+    origin: "http://localhost:3000", // adjust as necessary
+    credentials: true,
+  };
+
+app.use(cors(corsOptions));
+
 // Define a simple root route
 app.get('/', (req, res) => {
   res.send('Hello, Express!');
