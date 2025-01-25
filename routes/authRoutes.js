@@ -23,19 +23,18 @@ router.post('/patient/register', validateRegistration, async (req, res) => {
   }
 });
 
+// Login Route
 router.post('/login', validateLogin, async (req, res) => {
   try {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
-    // Set cookie for localhost
     res.cookie('token', token, {
-      httpOnly: true, // Prevent client-side JavaScript from accessing the cookie
-      secure: false, // Set to false for localhost (HTTP)
-      sameSite: 'lax', 
-      domain: 'localhost', // Explicitly set domain for localhost
-      path: '/', // Accessible across all routes
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: "none",
+      path: '/', 
+      maxAge: 7* 24 * 60 * 60 * 1000
     });
 
     res.json({ message: 'Login successful' });
@@ -43,8 +42,6 @@ router.post('/login', validateLogin, async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 });
-
-
 
 // Logout Route
 router.post('/logout', (req, res) => {

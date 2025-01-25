@@ -20,7 +20,7 @@ const limiter = rateLimit({
   
 
 const corsOptions = {
-    origin: "http://localhost:3000", // adjust as necessary
+    origin: "*", // adjust as necessary
     credentials: true,
   };
 
