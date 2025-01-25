@@ -28,16 +28,13 @@ router.post('/login', validateLogin, async (req, res) => {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
-    // Extract the domain from the request origin
-    const origin = req.get('origin');
-    const domain = origin ? new URL(origin).hostname : undefined;
-    
+    // Set cookie for localhost
     res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
-      sameSite: 'none', // Required for cross-site cookies
-      domain: domain, // Dynamically set the domain
-      path: '/', // Ensure the cookie is accessible across all routes
+      httpOnly: true, // Prevent client-side JavaScript from accessing the cookie
+      secure: false, // Set to false for localhost (HTTP)
+      sameSite: 'lax', 
+      domain: 'localhost', // Explicitly set domain for localhost
+      path: '/', // Accessible across all routes
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -46,6 +43,8 @@ router.post('/login', validateLogin, async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 });
+
+
 
 // Logout Route
 router.post('/logout', (req, res) => {
