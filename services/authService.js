@@ -1,4 +1,7 @@
+const bcrypt = require('bcryptjs');
 const pool = require('../config/supabase'); // Import the pool
+const { generateToken } = require('../config/jwtConfig');
+
 
 const registerUser = async (userData, userType) => {
   const { password, ...userDetails } = userData;
