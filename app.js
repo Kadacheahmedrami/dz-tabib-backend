@@ -19,12 +19,22 @@ const limiter = rateLimit({
   });
   
 
-const corsOptions = {
-    origin: "http://localhost:3000", // adjust as necessary
+  const allowedOrigins = [
+    "http://localhost:3000", 
+    "https://d-ztabib.vercel.app"
+  ]; // Add your origins here
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true); // Allow the request
+      } else {
+        callback(new Error("Not allowed by CORS")); // Reject the request
+      }
+    },
     credentials: true,
   };
-
-
+  
 
 
 
