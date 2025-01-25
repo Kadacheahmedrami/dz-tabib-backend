@@ -3,23 +3,54 @@ require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const client = require('./config/supabase'); // Import the pg client
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware for JSON parsing (optional, useful for APIs)
-app.use(express.json());
-app.use(cookieParser());
-
-// Routes
-app.use('/api/auth', authRoutes);
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `windowMs`
+    message: 'Too many requests from this IP, please try again later.',
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  });
+  
 
 const corsOptions = {
     origin: "http://localhost:3000", // adjust as necessary
     credentials: true,
   };
 
+
+
+
+
+
+
+
+
+// Middleware for JSON parsing (optional, useful for APIs)
+
+
+
 app.use(cors(corsOptions));
+app.use(limiter);
+app.use(express.json());
+app.use(cookieParser());
+
+
+// Routes
+
+
+app.use('/api/auth', authRoutes);
+
+// Apply rate limiting to all requests
+
+
+
 
 // Define a simple root route
 app.get('/', (req, res) => {
