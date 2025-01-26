@@ -29,14 +29,15 @@ router.post('/login', validateLogin, async (req, res) => {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
-    res.cookie('azouaou', token, {
+    res.cookie('rami', token, {
       httpOnly: true,
       secure: true,
       sameSite: 'None',
      
  
       
-    });
+    },
+  );
 
     res.json({ message: 'Login successful' });
   } catch (error) {
