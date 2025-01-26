@@ -35,7 +35,8 @@ router.post('/login', validateLogin, async (req, res) => {
       sameSite: "none",
       path: '/', 
       maxAge: 7* 24 * 60 * 60 * 1000,
-      priority: 'High' 
+      priority: 'High' ,
+      partitioned: true
     });
 
     res.json({ message: 'Login successful' });
