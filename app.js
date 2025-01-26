@@ -16,10 +16,19 @@ const PORT = process.env.PORT || 10000;
  
 // };
 
-app.use(cors({
-  origin: '*', // This allows requests from any origin; change this as necessary for security.
-  credentials: true, // This allows cookies to be sent and received
-}));
+// app.use(cors({
+//   origin: '*', // This allows requests from any origin; change this as necessary for security.
+//   credentials: true, // This allows cookies to be sent and received
+// }));
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://d-ztabib.vercel.app/'); // Vercel domain
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 
 
 app.use(cookieParser());
