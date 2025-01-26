@@ -38,7 +38,7 @@ const limiter = rateLimit({
 const corsOptions = {
   origin: true, // Allow all origins
   credentials: true,
-  methods: ['GET', 'POST', 'OPTIONS'],
+ 
 };
 
 app.use(cors(corsOptions));
