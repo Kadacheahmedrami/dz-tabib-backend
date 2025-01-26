@@ -22,7 +22,7 @@ router.post('/patient/register', validateRegistration, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
+// hope this make it work
 // Login Route
 router.post('/login', validateLogin, async (req, res) => {
   try {
