@@ -29,7 +29,7 @@ router.post('/login', validateLogin, async (req, res) => {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
-    res.cookie('azouaou', token, {
+    res.cookie('ramix', token, {
       httpOnly: true,
       secure: true,
       maxAge: 3600000
@@ -44,7 +44,7 @@ router.post('/login', validateLogin, async (req, res) => {
 
 // Logout Route
 router.post('/logout', (req, res) => {
-  res.clearCookie('token');
+  res.clearCookie('ramix');
   res.json({ message: 'Logged out successfully' });
 });
 
