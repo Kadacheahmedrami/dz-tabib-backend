@@ -18,18 +18,9 @@ const limiter = rateLimit({
     maxWait: 0,
 });
 
-const allowedOrigins = [
-    "https://d-ztabib.vercel.app"
-];
 
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "https://d-ztabib.vercel.app",
     credentials: true,
 };
 
