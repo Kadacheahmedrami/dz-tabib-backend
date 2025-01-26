@@ -32,7 +32,7 @@ const limiter = rateLimit({
         callback(new Error("Not allowed by CORS")); // Reject the request
       }
     },
-    exposedHeaders: ['Set-Cookie'],
+   
     credentials: true,
     
   };
