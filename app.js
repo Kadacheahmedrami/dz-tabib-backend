@@ -6,12 +6,13 @@ const cors = require('cors');
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 
 const corsOptions = {
     origin: true,
     credentials: true,
+
 };
 
 
@@ -20,11 +21,11 @@ const corsOptions = {
 //   credentials: true,
  
 // };
-
+app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(cookieParser());
+
 
 app.use('/', authRoutes);
 
