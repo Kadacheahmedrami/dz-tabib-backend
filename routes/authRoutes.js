@@ -29,7 +29,7 @@ router.post('/login', validateLogin, async (req, res) => {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
-    res.cookie('token', token, {
+    res.cookie('azouaou', token, {
       httpOnly: true,
       secure: true,
       sameSite: "None",
