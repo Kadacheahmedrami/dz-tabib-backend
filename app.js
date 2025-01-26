@@ -25,25 +25,25 @@ app.use(cors({
 app.use(cookieParser());
 
 // Route to set a cookie
-app.get('/set-cookie', (req, res) => {
-  // Set a cookie with SameSite=None and Secure (for cross-site testing)
-  res.cookie('user_session', 'sameSiteTest', {
-    httpOnly: true,  // Cookie is only accessible by HTTP requests
-    secure: true,    // Cookie is only sent over HTTPS (useful for production)
-    sameSite: 'None', // Allows the cookie to be sent in cross-origin requests
-    path: '/',
-    maxAge: 3600000, // Cookie expires after 1 hour (in milliseconds)
-  });
+// app.get('/set-cookie', (req, res) => {
+//   // Set a cookie with SameSite=None and Secure (for cross-site testing)
+//   res.cookie('user_session', 'sameSiteTest', {
+//     httpOnly: true,  // Cookie is only accessible by HTTP requests
+//     secure: true,    // Cookie is only sent over HTTPS (useful for production)
+//     sameSite: 'None', // Allows the cookie to be sent in cross-origin requests
+//     path: '/',
+//     maxAge: 3600000, // Cookie expires after 1 hour (in milliseconds)
+//   });
 
-  res.send('Cookie has been set with SameSite=None and Secure flag!');
-});
-
-
-
-// app.use(express.json());
+//   res.send('Cookie has been set with SameSite=None and Secure flag!');
+// });
 
 
-// app.use('/', authRoutes);
+
+app.use(express.json());
+
+
+app.use('/', authRoutes);
 
 
 
