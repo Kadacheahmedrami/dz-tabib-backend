@@ -18,28 +18,27 @@ const limiter = rateLimit({
     maxWait: 0,
 });
 
-// const allowedOrigins = [
-//     "http://localhost:3000", 
-//     "https://d-ztabib.vercel.app"
-// ];
-
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//         if (!origin || allowedOrigins.includes(origin)) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error("Not allowed by CORS"));
-//         }
-//     },
-//     credentials: true,
-// };
-
+const allowedOrigins = [
+    "https://d-ztabib.vercel.app"
+];
 
 const corsOptions = {
-  origin: true, // Allow all origins
-  credentials: true,
- 
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
 };
+
+
+// const corsOptions = {
+//   origin: true, // Allow all origins
+//   credentials: true,
+ 
+// };
 
 app.use(cors(corsOptions));
 app.use(limiter);
