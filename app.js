@@ -2,7 +2,6 @@ const express = require('express');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
-const client = require('./config/supabase');
 const cors = require('cors');
 
 
@@ -29,26 +28,8 @@ app.use(cookieParser());
 
 app.use('/', authRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Hello, Express!');
-});
 
-app.get('/test-connection', async (req, res) => {
-    try {
-        const result = await client.query('SELECT * FROM doctors;');
-        res.status(200).json({
-            success: true,
-            message: 'Database connection successful!',
-            data: result.rows,
-        });
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            message: 'Failed to connect to the database',
-            error: err.message,
-        });
-    }
-});
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
