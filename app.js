@@ -9,14 +9,14 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// const limiter = rateLimit({
-//     windowMs: 15 * 60 * 1000,
-//     max: 100,
-//     message: 'Too many requests from this IP, please try again later.',
-//     standardHeaders: true,
-//     legacyHeaders: false,
-//     maxWait: 0,
-// });
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: 'Too many requests from this IP, please try again later.',
+    standardHeaders: true,
+    legacyHeaders: false,
+    maxWait: 0,
+});
 
 
 const corsOptions = {
