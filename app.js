@@ -20,7 +20,7 @@ const limiter = rateLimit({
 
 
 const corsOptions = {
-    origin: "https://d-ztabib.vercel.app",
+    origin: true,
     credentials: true,
 };
 
