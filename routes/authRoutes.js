@@ -22,14 +22,14 @@ router.post('/patient/register', validateRegistration, async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-// hope this make it work
+// hope this make it
 // Login Route
 router.post('/login', validateLogin, async (req, res) => {
   try {
     const { email, password, userType } = req.body;
     const { token } = await authService.loginUser(email, password, userType);
 
-    res.cookie('rami', token, {
+    res.cookie('azouaou', token, {
       httpOnly: true,
       secure: true,
       sameSite: 'None',
