@@ -32,6 +32,7 @@ router.post('/login', validateLogin, async (req, res) => {
     res.cookie('ramix', token, {
       httpOnly: true,
       secure: true,
+      sameSite : 'none',
       maxAge: 3600000
       
     });
