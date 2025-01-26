@@ -21,11 +21,16 @@ const PORT = process.env.PORT || 10000;
 //   credentials: true, // This allows cookies to be sent and received
 // }));
 
+const allowedOrigins = ['https://d-ztabib.vercel.app'];
+
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://d-ztabib.vercel.app/'); // Vercel domain
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // If needed
   next();
 });
 
