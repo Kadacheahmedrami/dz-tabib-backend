@@ -41,7 +41,7 @@ app.use('/', authRoutes);
 app.get('/cookie' , (req,res) =>{
 
   console.log(req.cookies)
-  return res.json(req.cookies)
+  return res.json("hello")
 })
 
 
