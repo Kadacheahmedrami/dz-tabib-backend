@@ -35,7 +35,7 @@ router.post('/login', validateLogin, async (req, res) => {
       secure: true,
       sameSite : 'none',
       maxAge: 3600000,
-      domain:".vercel.app"
+      domain:"vercel.app"
     });
 
     res.json({ message: 'Login successful' });
