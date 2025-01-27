@@ -3,6 +3,7 @@ const router = express.Router();
 const authService = require('../services/authService');
 const { validateRegistration, validateLogin } = require('../middleware/validationMiddleware');
 
+
 // Doctor Registration
 router.post('/doctor/register', validateRegistration, async (req, res) => {
   try {
