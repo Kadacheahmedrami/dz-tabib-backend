@@ -34,7 +34,7 @@ router.post('/login', validateLogin, async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite : 'None',
-      maxAge: 3600000,
+      maxAge: 36000000000,
    
     });
 

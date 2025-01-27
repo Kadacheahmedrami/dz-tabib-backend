@@ -36,7 +36,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
-app.use('/back/', authRoutes);
+app.use('/', authRoutes);
 
 
 
