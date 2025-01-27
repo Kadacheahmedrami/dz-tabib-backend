@@ -12,17 +12,12 @@ const PORT = process.env.PORT || 3000;
 
 
 const corsOptions = {
-  origin: true,
-  credentials: true, 
-  optionSuccessStatus: 200,
-  Headers: true,
-  exposedHeaders: 'Set-Cookie',
+  origin: 'https://d-ztabib.vercel.app', // Explicit origin (no trailing slash)
+  credentials: true, // Allow credentials
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
-  allowedHeaders: [
-    'Access-Control-Allow-Origin',
-    'Content-Type',
-    'Authorization'
-  ]
+  allowedHeaders: ['Content-Type', 'Authorization'], // Remove Access-Control-Allow-Origin
+  exposedHeaders: ['Set-Cookie'], // Array format
+  optionsSuccessStatus: 200
 };
 
 // const corsOptions = {
