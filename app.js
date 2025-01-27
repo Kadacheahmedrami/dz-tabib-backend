@@ -10,11 +10,18 @@ const PORT = process.env.PORT || 3000;
 
 
 const corsOptions = {
-    origin: true,
-    credentials: true,
-    
+  origin: "*",
+  credentials: true, 
+  optionSuccessStatus: 200,
+  Headers: true,
+  exposedHeaders: 'Set-Cookie',
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Access-Control-Allow-Origin',
+    'Content-Type',
+    'Authorization'
+  ]
 };
-
 
 // const corsOptions = {
 //   origin: true, // Allow all origins
