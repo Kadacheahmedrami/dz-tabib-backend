@@ -33,7 +33,7 @@ router.post('/login', validateLogin, async (req, res) => {
     res.cookie('ramix', token, {
       httpOnly: true,
       secure: true,
-      sameSite : 'none',
+      sameSite : 'None',
       maxAge: 3600000,
       domain:"vercel.app"
     });
