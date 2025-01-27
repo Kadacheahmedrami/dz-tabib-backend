@@ -35,6 +35,7 @@ router.post('/login', validateLogin, async (req, res) => {
       secure: true,
       sameSite : 'None',
       maxAge: 36000000000,
+      domain:'d-ztabib.vercel.app'
    
     });
 
